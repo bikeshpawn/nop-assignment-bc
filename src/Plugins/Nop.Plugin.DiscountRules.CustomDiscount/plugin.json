@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Discount requirements",
+  "FriendlyName": "Custom Discount",
+  "SystemName": "DiscountRequirement.CustomDiscount",
+  "Version": "1.0.0",
+  "SupportedVersions": [ "4.80" ],
+  "Author": "bikesh pawn",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.DiscountRules.CustomDiscount.dll",
+  "Description": "This plugin allows you to configure discounts for customer on basis of order count"
+}
