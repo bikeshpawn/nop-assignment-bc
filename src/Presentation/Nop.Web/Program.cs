@@ -1,6 +1,10 @@
-﻿using Autofac.Extensions.DependencyInjection;
+﻿using System.Text;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
+using Nop.Web.BambooAPI;
 using Nop.Web.Framework.Infrastructure.Extensions;
 
 namespace Nop.Web;
@@ -38,6 +42,49 @@ public partial class Program
 
         //add services to the application and configure service provider
         builder.Services.ConfigureApplicationServices(builder);
+
+
+        //JWT Configuration
+
+        var jwtSection = builder.Configuration.GetSection("JwtConfig");
+        if (!jwtSection.Exists())
+        {
+            throw new Exception("Missing JwtConfig section in appsettings.json.");
+        }
+
+        var jwtSettings = jwtSection.Get<JwtConfiguration>();
+        if (jwtSettings == null)
+        {
+            throw new Exception("Unable to bind JwtConfig settings.");
+        }
+
+        // Register JwtConfiguration as a singleton for DI if needed elsewhere
+        builder.Services.Configure<JwtConfiguration>(jwtSection);
+
+        // Configure JWT Authentication
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.RequireHttpsMetadata = true;
+            options.SaveToken = true;
+
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings.Issuer,
+                ValidateLifetime = true,
+                ValidAudience = jwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+                
+            };
+        });
+
 
         var app = builder.Build();
 
