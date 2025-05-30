@@ -1,6 +1,7 @@
 # NopCommerce Custom Features & Deployment (BambooCard Task)
 
-Visit [Bamboocard-task](https://bamboocardtask.esaralaccount.com/) for demo hosting site with assessment.  
+The demo for the completed task is available at : [Bamboocard-task](https://bamboocardtask.esaralaccount.com/)
+
 **Credentials:**  
 - Email: `admin@yourstore.com`  
 - Password: `admin987`  
@@ -115,7 +116,7 @@ docker compose up --build -d
 - `Build images`
 - `Start containers in detached mode`
 
-**To Check Docker Images & ContainersCheck via terminal:**
+**To Check Docker Images & Containers Check via terminal:**
 - `docker images`
 - `docker ps`
 
