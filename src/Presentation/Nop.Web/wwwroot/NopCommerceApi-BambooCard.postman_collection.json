@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "f1fa581c-3ae9-4d8b-aa4f-dd6203dadf99",
+		"name": "NopCommerceApi-BambooCard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18275455"
+	},
+	"item": [
+		{
+			"name": "GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin@yourstore.com\",\r\n    \"password\":\"admin987\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/token/GenerateToken",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"token",
+						"GenerateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrderByEmail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkB5b3Vyc3RvcmUuY29tIiwianRpIjoiOGI1MWY1YmYtNWFjYy00YTQ5LTg0MTAtZTliZDA2MjJlNjliIiwiZXhwIjoxNzQ4NjI3NTg4LCJpc3MiOiJCYW1ib28gQ2FyZCIsImF1ZCI6IkN1c3RvbWVycyJ9.NU5X6HmkiNzFer9KYHf-76TiLDPaxOqlR5W_m8T7QWs",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/order/GetOrderDetailsByEmail?email=admin@yourstore.com",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"order",
+						"GetOrderDetailsByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "admin@yourstore.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://bamboocardtask.esaralaccount.com",
+			"type": "string"
+		}
+	]
+}
