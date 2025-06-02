@@ -107,10 +107,10 @@ In your `/src` directory, ensure the following files exist:
 2. Navigate to the `/src` directory.
 
 ### Clean up previous volumes (optional but recommended):
-docker compose down --volumes
+docker-compose down --volumes
 
 ### Build and start containers:
-docker compose up --build -d
+docker-compose up --build -d
 
 **This will:**
 - `Build images`
